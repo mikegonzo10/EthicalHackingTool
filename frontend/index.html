@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking Toolkit</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>EthicalHack</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-page="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li data-page="network-scanner">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Network Scanner</span>
+                </li>
+                <li data-page="vulnerability-scanner">
+                    <i class="fas fa-search"></i>
+                    <span>Vulnerability Scanner</span>
+                </li>
+                <li data-page="password-cracker">
+                    <i class="fas fa-key"></i>
+                    <span>Password Cracker</span>
+                </li>
+                <li data-page="packet-sniffer">
+                    <i class="fas fa-ethernet"></i>
+                    <span>Packet Sniffer</span>
+                </li>
+                <li data-page="results">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Results</span>
+                </li>
+                <li data-page="logs">
+                    <i class="fas fa-history"></i>
+                    <span>Activity Logs</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>Ethical Hacking Tool v1.0</p>
+                <p class="small">For educational purposes only</p>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h2 id="page-title">Dashboard</h2>
+                </div>
+                <div class="header-controls">
+                    <button id="stop-btn" class="btn btn-danger" style="display: none;">
+                        <i class="fas fa-stop"></i> Stop Process
+                    </button>
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Pages -->
+            <div class="content-container">
+                <!-- Dashboard Page -->
+                <div class="page active" id="dashboard">
+                    <div class="dashboard-container">
+                        <div class="welcome-message">
+                            <h3>Welcome to the Ethical Hacking Toolkit</h3>
+                            <p>A collection of tools for security assessment and network analysis. Please use these tools responsibly and only on systems you have permission to test.</p>
+                        </div>
+                        
+                        <div class="dashboard-cards">
+                            <div class="card" data-page="network-scanner">
+                                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                                <div class="card-content">
+                                    <h3>Network Scanner</h3>
+                                    <p>Scan networks to discover hosts and open ports</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card" data-page="vulnerability-scanner">
+                                <div class="card-icon"><i class="fas fa-search"></i></div>
+                                <div class="card-content">
+                                    <h3>Vulnerability Scanner</h3>
+                                    <p>Scan systems for known security vulnerabilities</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card" data-page="password-cracker">
+                                <div class="card-icon"><i class="fas fa-key"></i></div>
+                                <div class="card-content">
+                                    <h3>Password Cracker</h3>
+                                    <p>Attempt to crack password hashes</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card" data-page="packet-sniffer">
+                                <div class="card-icon"><i class="fas fa-ethernet"></i></div>
+                                <div class="card-content">
+                                    <h3>Packet Sniffer</h3>
+                                    <p>Capture and analyze network packets</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-activities">
+                            <h3>Recent Activities</h3>
+                            <div id="recent-activity-list">
+                                <p class="no-activity">No recent activities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Scanner Page -->
+                <div class="page" id="network-scanner">
+                    <div class="tool-container">
+                        <div class="tool-description">
+                            <h3>Network Scanner</h3>
+                            <p>This tool uses nmap to scan networks for hosts and open ports. Enter an IP address, range, or hostname to scan.</p>
+                        </div>
+                        
+                        <div class="form-container">
+                            <div class="form-group">
+                                <label for="target-input">Target IP/Range:</label>
+                                <input type="text" id="target-input" placeholder="e.g., 192.168.1.0/24 or example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ports-input">Ports (optional):</label>
+                                <input type="text" id="ports-input" placeholder="e.g., 22,80,443 or 1-1024">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="scan-network-btn" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Start Scan
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-container">
+                            <h3>Scan Results</h3>
+                            <div id="network-scan-results" class="results-content">
+                                <p class="no-results">No scan results yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vulnerability Scanner Page -->
+                <div class="page" id="vulnerability-scanner">
+                    <div class="tool-container">
+                        <div class="tool-description">
+                            <h3>Vulnerability Scanner</h3>
+                            <p>This tool scans systems for known security vulnerabilities using nmap's vulnerability scanning scripts.</p>
+                        </div>
+                        
+                        <div class="form-container">
+                            <div class="form-group">
+                                <label for="vuln-target-input">Target IP/Hostname:</label>
+                                <input type="text" id="vuln-target-input" placeholder="e.g., 192.168.1.10 or example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="scan-vulnerabilities-btn" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Start Scan
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-container">
+                            <h3>Vulnerability Scan Results</h3>
+                            <div id="vulnerability-scan-results" class="results-content">
+                                <p class="no-results">No scan results yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Cracker Page -->
+                <div class="page" id="password-cracker">
+                    <div class="tool-container">
+                        <div class="tool-description">
+                            <h3>Password Cracker</h3>
+                            <p>This tool attempts to crack password hashes using dictionary attacks.</p>
+                        </div>
+                        
+                        <div class="form-container">
+                            <div class="form-group">
+                                <label for="hash-input">Hash Value:</label>
+                                <input type="text" id="hash-input" placeholder="Enter the hash to crack">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hash-type-select">Hash Type:</label>
+                                <select id="hash-type-select">
+                                    <option value="md5">MD5</option>
+                                    <option value="sha1">SHA1</option>
+                                    <option value="sha256" selected>SHA256</option>
+                                    <option value="sha512">SHA512</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="wordlist-input">Wordlist (optional):</label>
+                                <input type="text" id="wordlist-input" placeholder="Path to wordlist file">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="crack-password-btn" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Start Cracking
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-container">
+                            <h3>Password Cracking Results</h3>
+                            <div id="password-crack-results" class="results-content">
+                                <p class="no-results">No cracking results yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packet Sniffer Page -->
+                <div class="page" id="packet-sniffer">
+                    <div class="tool-container">
+                        <div class="tool-description">
+                            <h3>Packet Sniffer</h3>
+                            <p>This tool captures and analyzes network packets using Scapy. Note: This tool requires administrative privileges.</p>
+                        </div>
+                        
+                        <div class="form-container">
+                            <div class="form-group">
+                                <label for="interface-select">Network Interface:</label>
+                                <select id="interface-select">
+                                    <option value="" disabled selected>Select an interface</option>
+                                    <!-- Will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="duration-input">Duration (seconds):</label>
+                                <input type="number" id="duration-input" value="10" min="1" max="60">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="filter-input">BPF Filter (optional):</label>
+                                <input type="text" id="filter-input" placeholder="e.g., tcp port 80">
+                            </div>
+                            
+                            <div class="form-group">
+                                <button id="start-sniffing-btn" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Start Capture
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="results-container">
+                            <h3>Packet Capture Results</h3>
+                            <div id="packet-sniff-results" class="results-content">
+                                <p class="no-results">No capture results yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Page -->
+                <div class="page" id="results">
+                    <div class="results-history-container">
+                        <h3>Scan Results History</h3>
+                        <div class="results-list">
+                            <div id="results-list-container">
+                                <p class="no-results">No scan history available</p>
+                            </div>
+                        </div>
+                        
+                        <div class="results-details">
+                            <h3>Result Details</h3>
+                            <div id="result-details-container">
+                                <p class="no-details">Select a result to view details</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logs Page -->
+                <div class="page" id="logs">
+                    <div class="logs-container">
+                        <h3>Activity Logs</h3>
+                        <div class="log-controls">
+                            <button id="refresh-logs-btn" class="btn btn-secondary">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                        </div>
+                        <div id="logs-content" class="logs-content">
+                            <p class="no-logs">No logs available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loading-message">Processing...</p>
+    </div>
+
+    <!-- Modal for Alerts and Messages -->
+    <div class="modal" id="alert-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">Alert</h3>
+            <p id="modal-message"></p>
+            <div class="modal-footer">
+                <button id="modal-close-btn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/api.js"></script>
+</body>
+</html> 
